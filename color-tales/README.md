@@ -25,7 +25,7 @@ npm run build      # static site in dist/ (works from any folder: relative paths
 
 | File | What it is |
 |---|---|
-| `interior.pdf` | 24-page 8.5 x 11 in black & white interior, no bleed, fonts embedded: title, "this book belongs to", color test, how-to (with QR), 6 story/picture spreads, certificate, "draw your own" pages, more books |
+| `interior.pdf` | 8.5 x 11 in black & white interior (32 pages for a 12-page story), no bleed, fonts embedded: title, "this book belongs to", color test, how-to (with QR), one story/picture spread per story page, certificate, "draw your own" pages, more books |
 | `cover.pdf` | Full-wrap color cover (back + spine + front) with 0.125 in bleed, spine width from page count, KDP barcode area kept clear |
 | `listing.md` | Store listing: details, description, 7 keywords and categories |
 

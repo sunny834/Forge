@@ -366,3 +366,27 @@ export function heart(s: Scene, cx: number, cy: number, k: number) {
 export function rock(s: Scene, cx: number, cy: number, rx: number, ry: number) {
   s.region("Rock", "#adb5bd", { kind: "ellipse", cx, cy, rx, ry });
 }
+
+export function puddle(s: Scene, cx: number, cy: number, rx: number) {
+  s.region("Puddle", "#4cc9f0", { kind: "ellipse", cx, cy, rx, ry: n(rx * 0.3) });
+}
+
+export function envelope(s: Scene, cx: number, cy: number, k = 1, color = "#ffc8dd") {
+  const p = rel(cx, cy, k);
+  s.region("Invitation", color, { kind: "rect", x: n(cx - 60 * k), y: n(cy - 40 * k), w: n(120 * k), h: n(80 * k), rx: n(6 * k) });
+  s.line(`M ${p(-60, -40)} L ${p(0, 5)} L ${p(60, -40)}`);
+}
+
+export function present(s: Scene, cx: number, baseY: number, w: number, h: number, color: string) {
+  s.region("Present", color, { kind: "rect", x: cx - w / 2, y: baseY - h, w, h, rx: 6 });
+  s.region("Bow", "#ffd166", {
+    kind: "path",
+    d: `M ${cx} ${baseY - h} Q ${cx - 40} ${baseY - h - 45} ${cx - 30} ${baseY - h - 5} Z M ${cx} ${baseY - h} Q ${cx + 40} ${baseY - h - 45} ${cx + 30} ${baseY - h - 5} Z`,
+  });
+  s.line(`M ${cx} ${baseY - h} L ${cx} ${baseY} M ${cx - w / 2} ${n(baseY - h / 2)} L ${cx + w / 2} ${n(baseY - h / 2)}`);
+}
+
+export function musicNote(s: Scene, x: number, y: number, k = 1) {
+  s.detail({ kind: "ellipse", cx: x, cy: y, rx: n(11 * k), ry: n(8 * k) }, true);
+  s.line(`M ${n(x + 10 * k)} ${y} L ${n(x + 10 * k)} ${n(y - 45 * k)} Q ${n(x + 25 * k)} ${n(y - 35 * k)} ${n(x + 28 * k)} ${n(y - 20 * k)}`);
+}
