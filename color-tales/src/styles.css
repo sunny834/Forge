@@ -1,0 +1,580 @@
+:root {
+  --bg: #fff4e6;
+  --bg-2: #ffe8cc;
+  --card: #ffffff;
+  --ink: #2b2d42;
+  --ink-soft: #5c5f77;
+  --accent: #ff006e;
+  --accent-2: #3a86ff;
+  --ok: #2a9d8f;
+  --ring: #ffbe0b;
+  --radius: 24px;
+  --tap: 64px;
+  --shadow: 0 6px 0 rgba(43, 45, 66, 0.12), 0 12px 24px rgba(43, 45, 66, 0.08);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Fredoka", "Baloo 2", "Comic Sans MS", system-ui, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 10% 10%, #ffd6e8 0 120px, transparent 121px),
+    radial-gradient(circle at 95% 20%, #caffbf 0 90px, transparent 91px),
+    radial-gradient(circle at 80% 95%, #bde0fe 0 140px, transparent 141px),
+    var(--bg);
+  background-attachment: fixed;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+:focus-visible {
+  outline: 4px solid var(--ring);
+  outline-offset: 3px;
+}
+
+/* ---------- library ---------- */
+
+.library {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.library-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.library-header h1 {
+  font-size: clamp(2.4rem, 7vw, 4rem);
+  margin: 0;
+  color: var(--accent);
+  text-shadow: 3px 3px 0 #ffd166;
+}
+
+.library-header p {
+  font-size: 1.4rem;
+  margin: 4px 0 0;
+  color: var(--ink-soft);
+}
+
+.book-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--radius);
+  padding: 14px;
+  text-decoration: none;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  border: 4px solid var(--ink);
+  transition: transform 0.15s ease;
+}
+
+.book-card:hover,
+.book-card:focus-visible {
+  transform: translateY(-4px) rotate(-0.6deg);
+}
+
+.book-card:active {
+  transform: scale(0.98);
+}
+
+.book-cover {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid var(--ink);
+  background: #fff;
+}
+
+.book-info h2 {
+  font-size: 1.6rem;
+  margin: 12px 4px 8px;
+  line-height: 1.1;
+}
+
+.book-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 4px 4px;
+}
+
+.tag {
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* ---------- art layers ---------- */
+
+.art-stack {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.art-stack > svg,
+.art-stack > canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.art-stack [data-region] {
+  cursor: pointer;
+  transition: fill 0.2s ease;
+}
+
+.brush-layer {
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.tool-fill .brush-layer {
+  pointer-events: none;
+}
+
+.tool-brush [data-region],
+.tool-eraser [data-region] {
+  cursor: crosshair;
+}
+
+/* ---------- reader ---------- */
+
+.reader {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 16px 24px;
+  display: grid;
+  gap: 12px;
+}
+
+.reader-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reader-header h1 {
+  flex: 1;
+  margin: 0;
+  font-size: clamp(1.3rem, 4vw, 2rem);
+  line-height: 1.1;
+}
+
+.page-count {
+  font-weight: 700;
+  font-size: 1.3rem;
+  background: var(--card);
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+
+.icon-btn,
+.nav-btn {
+  min-width: var(--tap);
+  min-height: var(--tap);
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 4px solid var(--ink);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  font-size: 1.8rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.icon-btn:active,
+.nav-btn:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.story-panel {
+  background: var(--card);
+  border: 4px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 14px 18px;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.story-text {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.story-text p {
+  flex: 1;
+  margin: 0;
+  font-size: clamp(1.25rem, 3.2vw, 1.8rem);
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.word {
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.word.active {
+  background: #ffd166;
+  box-shadow: 0 0 0 3px #ffd166;
+}
+
+.read-btn {
+  flex-shrink: 0;
+  min-height: var(--tap);
+  padding: 0 20px;
+  border-radius: 999px;
+  border: 4px solid var(--ink);
+  background: #caffbf;
+  font-weight: 700;
+  font-size: 1.2rem;
+  box-shadow: var(--shadow);
+}
+
+.read-btn.active {
+  background: #ffd6e8;
+}
+
+/* ---------- board ---------- */
+
+.board {
+  display: grid;
+  gap: 12px;
+}
+
+.board-art {
+  position: relative;
+  border: 5px solid var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.fill-progress {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid var(--ink);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fill-progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #ff006e, #ffbe0b, #3a86ff);
+  transition: width 0.3s ease;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background: var(--card);
+  border: 4px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 10px;
+  box-shadow: var(--shadow);
+}
+
+.tool-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tool-btn {
+  min-width: var(--tap);
+  min-height: var(--tap);
+  padding: 4px 10px;
+  border-radius: 18px;
+  border: 3px solid var(--ink);
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  gap: 0;
+  line-height: 1.1;
+}
+
+.tool-btn.active {
+  background: #ffd166;
+  box-shadow: inset 0 0 0 3px #fff;
+}
+
+.tool-btn.danger {
+  background: #ffadad;
+}
+
+.tool-icon {
+  font-size: 1.6rem;
+}
+
+.tool-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.size-btn {
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: 18px;
+  border: 3px solid var(--ink);
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+}
+
+.size-btn span {
+  display: block;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.size-btn.active {
+  background: #ffd166;
+}
+
+.palette {
+  display: grid;
+  grid-template-columns: repeat(7, var(--tap));
+  gap: 8px;
+}
+
+.swatch {
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: 50%;
+  border: 4px solid var(--ink);
+  padding: 0;
+  transition: transform 0.12s ease;
+}
+
+.swatch.active {
+  transform: scale(1.12);
+  box-shadow: 0 0 0 4px #fff, 0 0 0 8px var(--ink);
+}
+
+/* ---------- page nav ---------- */
+
+.page-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dot {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  background: var(--card);
+  padding: 0;
+  position: relative;
+}
+
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.dot.active::after {
+  background: var(--accent);
+}
+
+.nav-btn.done {
+  background: #caffbf;
+}
+
+/* ---------- celebration ---------- */
+
+.celebration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.confetti {
+  position: absolute;
+  top: -20px;
+  width: 14px;
+  height: 18px;
+  animation-name: fall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+.great-job {
+  background: #fff;
+  border: 5px solid var(--ink);
+  border-radius: 999px;
+  padding: 12px 28px;
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  font-weight: 700;
+  color: var(--accent);
+  box-shadow: var(--shadow);
+  animation: pop 0.5s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confetti {
+    display: none;
+  }
+  .great-job {
+    animation: none;
+  }
+  .book-card,
+  .swatch,
+  .art-stack [data-region] {
+    transition: none;
+  }
+}
+
+/* ---------- layout breakpoints ---------- */
+
+/* Tablet landscape & desktop: tools sit beside the picture. */
+@media (min-width: 1000px) and (min-aspect-ratio: 4/3) {
+  .reader {
+    --tap: 56px;
+  }
+  .board {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+  }
+  .toolbar {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: calc(var(--tap) * 4 + 8px * 3 + 28px);
+  }
+  .palette {
+    grid-template-columns: repeat(4, var(--tap));
+  }
+  .toolbar {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+  }
+  .tool-group.tools {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+  }
+  .tool-group.actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+  .board-art {
+    width: min(100%, calc((100vh - 320px) * 4 / 3));
+    justify-self: center;
+  }
+}
+
+@media (max-width: 620px) {
+  :root {
+    --tap: 56px;
+  }
+  .story-text {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .palette {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    width: 100%;
+  }
+  .swatch {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+  .dots {
+    gap: 4px;
+  }
+  .dot {
+    width: 28px;
+    height: 28px;
+  }
+  .dot::after {
+    inset: 6px;
+  }
+}

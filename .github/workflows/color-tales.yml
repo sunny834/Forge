@@ -1,0 +1,33 @@
+name: Color Tales CI
+
+on:
+  push:
+    paths:
+      - "color-tales/**"
+      - ".github/workflows/color-tales.yml"
+  pull_request:
+    paths:
+      - "color-tales/**"
+      - ".github/workflows/color-tales.yml"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: color-tales
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: color-tales/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: color-tales-dist
+          path: color-tales/dist
