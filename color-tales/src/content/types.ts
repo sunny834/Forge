@@ -33,6 +33,12 @@ export interface Book {
   id: string;
   slug: string;
   title: string;
+  /** Short line under the title on covers and store listings. */
+  subtitle: string;
+  /** Back-cover / store description. */
+  blurb: string;
+  /** "Draw your own" activity prompts for the printed book. */
+  drawPrompts: string[];
   ageMin: number;
   ageMax: number;
   theme: string;

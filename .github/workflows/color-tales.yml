@@ -27,7 +27,12 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
+      - run: npm run print
       - uses: actions/upload-artifact@v4
         with:
           name: color-tales-dist
           path: color-tales/dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: color-tales-print-files
+          path: color-tales/print-out

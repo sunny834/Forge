@@ -14,6 +14,15 @@ const luna: Book = {
   id: "book-luna",
   slug: "luna-the-little-cloud",
   title: "Luna the Little Cloud",
+  subtitle: "A Story & Coloring Book About Sharing",
+  blurb:
+    "Luna is a little cloud with a big dream: to make the brightest rainbow of all. With a little help from the Sun, she learns that sharing makes everyone shine. Read the gentle rhyming story, then color every page, one big friendly picture at a time.",
+  drawPrompts: [
+    "Draw the rainbow Luna will make next!",
+    "Draw a friend for Luna to play with.",
+    "Draw your favorite flower after the rain.",
+    "What shape would YOUR cloud be? Draw it!",
+  ],
   ageMin: 3,
   ageMax: 6,
   theme: "sharing",
@@ -78,6 +87,15 @@ const dino: Book = {
   id: "book-dino",
   slug: "dinos-big-day",
   title: "Dino's Big Day",
+  subtitle: "A Story & Coloring Book About Friendship",
+  blurb:
+    "Good morning, Dino! Today is the best day yet: a trip to the park with Birdie Blue and Turtle Dave. Slide down the big slide, share a picnic under the oak tree and wave goodnight to the stars. A cheerful rhyming story with big, easy pictures to color.",
+  drawPrompts: [
+    "Draw what Dino packs for tomorrow!",
+    "Draw a new friend for Dino at the park.",
+    "Draw Dino's favorite snack.",
+    "Draw the playground of your dreams!",
+  ],
   ageMin: 4,
   ageMax: 7,
   theme: "friendship",
@@ -138,6 +156,15 @@ const sea: Book = {
   id: "book-sea",
   slug: "under-the-sea-party",
   title: "Under the Sea Party",
+  subtitle: "A Story & Coloring Book About Celebrating Friends",
+  blurb:
+    "Deep in the ocean blue, Finn the fish is planning a surprise birthday party for Olly the octopus! Crab brings shells, Starfish brings light and everyone brings a smile. Read the bubbly rhyming story, then color the balloons, the kelp cake and all the party guests.",
+  drawPrompts: [
+    "Draw a present for Olly!",
+    "Draw a new sea creature coming to the party.",
+    "Decorate your own birthday cake!",
+    "Draw what YOU would find under the sea.",
+  ],
   ageMin: 3,
   ageMax: 8,
   theme: "celebration",
