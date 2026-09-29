@@ -1,0 +1,75 @@
+name: Color Tales CI
+
+on:
+  push:
+    paths:
+      - "color-tales/**"
+      - ".github/workflows/color-tales.yml"
+  pull_request:
+    paths:
+      - "color-tales/**"
+      - ".github/workflows/color-tales.yml"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: color-tales
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: color-tales/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: npm run print
+      - uses: actions/upload-artifact@v4
+        with:
+          name: color-tales-dist
+          path: color-tales/dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: color-tales-print-files
+          path: color-tales/print-out
+
+  # Deploys to Firebase Hosting. Skipped (not failed) until the repo has:
+  #   secret   FIREBASE_SERVICE_ACCOUNT_COLOR_TALES  (service account JSON)
+  #   variable FIREBASE_PROJECT_ID_COLOR_TALES       (e.g. color-tales-1234)
+  # PRs from this repo get a temporary preview URL; pushes to main go live.
+  deploy:
+    needs: check
+    if: >-
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
+    env:
+      HAS_FIREBASE: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_COLOR_TALES != '' && vars.FIREBASE_PROJECT_ID_COLOR_TALES != '' }}
+    steps:
+      - name: Firebase not configured yet
+        if: env.HAS_FIREBASE != 'true'
+        run: echo "::notice::Skipping deploy. Add the FIREBASE_SERVICE_ACCOUNT_COLOR_TALES secret and FIREBASE_PROJECT_ID_COLOR_TALES variable (see color-tales/README.md)."
+      - uses: actions/checkout@v4
+        if: env.HAS_FIREBASE == 'true'
+      - uses: actions/download-artifact@v4
+        if: env.HAS_FIREBASE == 'true'
+        with:
+          name: color-tales-dist
+          path: color-tales/dist
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        if: env.HAS_FIREBASE == 'true'
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_COLOR_TALES }}
+          projectId: ${{ vars.FIREBASE_PROJECT_ID_COLOR_TALES }}
+          entryPoint: color-tales
+          channelId: ${{ github.event_name == 'push' && 'live' || '' }}
+          expires: 7d
