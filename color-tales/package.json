@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "typecheck": "tsc -b",
     "test": "vitest run",
-    "print": "tsx print/build.ts"
+    "print": "tsx print/build.ts",
+    "deploy": "npm run build && npx --yes firebase-tools@15 deploy --only hosting"
   },
   "dependencies": {
     "react": "^19.3.0",

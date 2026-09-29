@@ -51,6 +51,29 @@ Settings live in `print/print.config.json`. Set these before the first real prin
 
 The page layout rules (trim, bleed, gutter by page count, spine per page, barcode area) are in `print/spec.ts` and covered by tests.
 
+## Hosting (Firebase)
+
+The companion app is a static site hosted on Firebase Hosting (`firebase.json`). Hash routing means any URL works without server rewrites. Built assets are cached for a year, and `index.html` is never cached, so updates show immediately.
+
+**One-time setup (Firebase console + GitHub):**
+
+1. Create a Firebase project at https://console.firebase.google.com. The free Spark plan is enough. Note its **project ID**, e.g. `color-tales-1a2b3`.
+2. In Google Cloud Console → IAM → Service accounts (same project), create a service account with the **Firebase Hosting Admin** and **API Keys Viewer** roles. Then create a JSON key for it. Keep the key private and never commit it.
+3. In GitHub → sunny834/Forge → Settings → Secrets and variables → Actions:
+   - Add a **secret** `FIREBASE_SERVICE_ACCOUNT_COLOR_TALES` containing the whole JSON key.
+   - Add a **variable** `FIREBASE_PROJECT_ID_COLOR_TALES` containing the project ID.
+
+After that, CI deploys automatically:
+
+- **Pull requests** get a temporary preview URL (7 days), posted as a PR comment.
+- **Pushes to `main`** go live at `https://<project-id>.web.app`.
+
+Until the secret and variable exist, the deploy job is skipped with a notice, and CI stays green.
+
+**Custom domain:** in Firebase → Hosting → Add custom domain (e.g. `colortales.com`), then add the DNS records it shows. Before printing any books, set `companionUrl` in `print/print.config.json` to the final address (custom domain if you have one), because it goes into the printed QR codes.
+
+**Manual deploy** (from your own computer): run `npm run deploy -- --project <project-id>`. Log in first with `npx firebase-tools login`.
+
 ## Adding a book
 
 Books live in `src/content/books.ts`. Each page is composed from reusable stamps in `src/content/art.ts` (sky, ground, sun, dino, fish, cake…) on an 800 x 600 canvas:
@@ -72,4 +95,4 @@ Every region is a closed shape with an id, a label and a suggested color. Later 
 2. **Parent accounts:** cloud save of artworks.
 3. **AI content pipeline:** theme to story text to region-based line art, then human review and publishing into the same `Book` / `Page` model.
 4. **Print & sell:** print files are done (`npm run print`). Next: host the companion app, set `companionUrl`, then order proof copies.
-5. **CI/CD:** `.github/workflows/color-tales.yml` already runs typecheck, tests and build on every push. Next is a deploy step.
+5. **CI/CD:** `.github/workflows/color-tales.yml` runs typecheck, tests, build and print on every push, and deploys to Firebase Hosting once configured (see Hosting).
