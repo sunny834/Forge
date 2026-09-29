@@ -32,7 +32,7 @@ const luna: Book = {
   ageMax: 6,
   theme: "sharing",
   coverColor: "#bde0fe",
-  coverPage: 8,
+  coverPage: 10,
   pages: pages([
     ["Luna was a little cloud, so soft and white and small. She dreamed of making rainbows, the brightest ones of all.", (s) => {
       a.sky(s);
@@ -52,6 +52,13 @@ const luna: Book = {
       a.face(s, 590, 125, 1.5);
       a.luna(s, 420, 400, 170);
     }],
+    ["That night she asked the Moon so bright, “How can I make the sky look right?” The Moon just winked, “Go ask the Sun. She knows how rainbows are begun.”", (s) => {
+      a.sky(s, "#1d3557", "Night sky");
+      a.moon(s, 620, 150, 70);
+      a.stars(s, [[110, 90, 20], [260, 70, 14], [420, 120, 18], [150, 250, 14], [720, 300, 16]]);
+      a.ground(s, 500, "Hill", "#2d6a4f");
+      a.luna(s, 330, 330, 240, true);
+    }],
     ["“How do I make a rainbow?” Luna asked the Sun one day. “Share your rain,” the Sun said, “and I will light the way!”", (s) => {
       a.sky(s);
       a.ground(s, 500);
@@ -66,6 +73,14 @@ const luna: Book = {
       a.tree(s, 140, 500, 1);
       a.bird(s, 560, 170, 1.1);
       a.luna(s, 360, 230, 250);
+    }],
+    ["WHOOSH! went the Wind. It blew so strong, it pushed poor Luna right along! Birdie flapped and held on tight, until the Wind calmed down all right.", (s) => {
+      a.sky(s);
+      a.ground(s, 480);
+      a.tree(s, 650, 500, 1.1);
+      a.luna(s, 330, 240, 260);
+      a.bird(s, 170, 170, 0.8);
+      s.line("M 40 330 Q 150 300 250 340 M 60 400 Q 200 370 300 410 M 520 110 Q 600 80 700 120");
     }],
     ["Luna floated over fields that were dusty, dry and brown. The thirsty flowers drooped their heads and looked a little down.", (s) => {
       a.sky(s);
@@ -109,6 +124,13 @@ const luna: Book = {
       a.sun(s, 110, 110, 45);
       a.luna(s, 650, 170, 210);
     }],
+    ["Down on the ground, Turtle Dave cheered, “Hooray for the rainbow that just appeared!” He'd never seen colors so shiny and new, and he danced a slow turtle dance for Luna too.", (s) => {
+      a.sky(s);
+      a.rainbow(s, 300, 470, 280, 32);
+      a.ground(s, 470);
+      a.turtle(s, 600, 520, 1.2);
+      a.luna(s, 640, 150, 200);
+    }],
     ["The big clouds gasped, “Oh my, oh my! The littlest cloud made a rainbow sky!” Luna smiled a shy, sweet smile. “Let's all share together for a while.”", (s) => {
       a.sky(s);
       a.ground(s, 500);
@@ -127,6 +149,14 @@ const luna: Book = {
       a.flower(s, 500, 575, 125, "#9d4edd");
       a.flower(s, 690, 570, 130, "#fb8500");
       a.luna(s, 400, 200, 240);
+    }],
+    ["At sunset Luna glowed pink and gold. “What a day!” she said. “What a story to be told!” The Sun waved goodbye with a warm orange light, and Luna floated off into the night.", (s) => {
+      a.sky(s, "#ffb4a2", "Sunset sky");
+      a.sun(s, 610, 300, 70);
+      a.hill(s, 600, 470, 500, 30);
+      a.ground(s, 470);
+      a.flower(s, 120, 580, 110, "#f72585");
+      a.luna(s, 300, 230, 280);
     }],
     ["Now every time the flowers need a drink, Luna comes to play. Sharing makes you shine inside, a little more each day.", (s) => {
       a.sky(s);
@@ -158,7 +188,7 @@ const dino: Book = {
   ageMax: 7,
   theme: "friendship",
   coverColor: "#caffbf",
-  coverPage: 2,
+  coverPage: 3,
   pages: pages([
     ["Good morning, Dino! Up you get! Stretch your tail and wiggle your toes. Today will be the best day yet, and everybody knows!", (s) => {
       a.sky(s);
@@ -174,6 +204,14 @@ const dino: Book = {
       a.apple(s, 560, 290, 22);
       a.apple(s, 660, 320, 22);
       a.dino(s, 280, 370, 1);
+    }],
+    ["Dino picks a flower, yellow and bright, a present for Birdie. It's just right! He holds it gently in his hand, the best surprise that he has planned.", (s) => {
+      a.sky(s);
+      a.ground(s, 470);
+      a.sun(s, 700, 90, 40);
+      a.flower(s, 620, 580, 130, "#ffd166");
+      a.flower(s, 720, 580, 110, "#f72585");
+      a.dino(s, 300, 370, 1);
     }],
     ["Dino packs a bright red ball, a crunchy apple snack, and a party hat so pointy and tall. Then off he goes, clickety-clack!", (s) => {
       a.sky(s);
@@ -200,6 +238,16 @@ const dino: Book = {
       a.turtle(s, 520, 490, 1);
       a.bird(s, 320, 150, 1);
     }],
+    ["Birdie Blue sings, “Tweet, tweet, tweet!” Turtle Dave taps his four slow feet. Dino joins in with a great big ROAR, and everyone laughs and sings some more!", (s) => {
+      a.sky(s);
+      a.ground(s, 470);
+      a.tree(s, 170, 490, 1.1);
+      a.bird(s, 170, 330, 0.8);
+      a.turtle(s, 560, 500, 1.1);
+      a.musicNote(s, 300, 200);
+      a.musicNote(s, 380, 140, 0.8);
+      a.musicNote(s, 680, 250);
+    }],
     ["Dino kicks the bright red ball. Up it flies, so high and tall! Turtle Dave calls, “Pass to me!” and rolls it back, one, two, three!", (s) => {
       a.sky(s);
       a.ground(s, 470);
@@ -224,6 +272,15 @@ const dino: Book = {
       a.slide(s, 120, 520);
       a.dino(s, 640, 420, 0.7);
     }],
+    ["Here come balloons, red, blue and green, the bounciest balloons you've ever seen! One for Dino, one for Dave, and one for Birdie. Give a wave!", (s) => {
+      a.sky(s);
+      a.ground(s, 480);
+      a.balloon(s, 200, 150, "#e63946");
+      a.balloon(s, 330, 110, "#4895ef");
+      a.balloon(s, 460, 160, "#52b788");
+      a.turtle(s, 600, 510, 1);
+      a.bird(s, 650, 200, 0.8);
+    }],
     ["Then along came Luna with a pitter and a pat! Dino splashed in every puddle, and that was that. They laughed and they jumped, and they didn't mind at all, for rain is fun for big and small!", (s) => {
       a.sky(s, "#a8dadc");
       a.ground(s, 460);
@@ -247,6 +304,13 @@ const dino: Book = {
       a.hill(s, 600, 470, 500, 30);
       a.ground(s, 470);
       a.dino(s, 300, 370, 1);
+    }],
+    ["Home again, it's bubble-bath time! Bubbles here and bubbles there, bubbles floating everywhere! A bubble on his nose, a bubble on his tail. Scrub-a-dub-dub, from head to scale!", (s) => {
+      a.sky(s, "#bde0fe", "Bathroom wall");
+      s.region("Floor", "#ffc8dd", { kind: "rect", x: 0, y: 480, w: 800, h: 120 });
+      a.dino(s, 330, 330, 0.9);
+      a.bathtub(s, 360, 330, 420);
+      a.bubbles(s, [[180, 320, 26], [250, 290, 20], [470, 300, 24], [540, 330, 18], [600, 220, 16], [650, 160, 12], [120, 240, 14]]);
     }],
     ["The stars come out, the moon is bright, the park is calm and deep. Goodnight, Dino! Sleep tight! It's time to go to sleep.", (s) => {
       a.sky(s, "#1d3557", "Night sky");
@@ -277,7 +341,7 @@ const sea: Book = {
   ageMax: 8,
   theme: "celebration",
   coverColor: "#90e0ef",
-  coverPage: 11,
+  coverPage: 14,
   pages: pages([
     ["Deep down in the ocean blue, where the bubbles love to play, Finn the fish had a great big plan, a plan for a special day.", (s) => {
       a.sky(s, WATER, "Water");
@@ -304,6 +368,14 @@ const sea: Book = {
       a.envelope(s, 680, 330, 0.8, "#caffbf");
       a.bubbles(s, [[330, 220, 12], [360, 170, 8]]);
     }],
+    ["Two little fish read the note with glee. “A party for Olly? Count on me!” They wiggled and giggled and swam in a twirl, the happiest fish in the whole wide world.", (s) => {
+      a.sky(s, WATER, "Water");
+      a.sand(s, 520);
+      a.fish(s, 230, 250, 0.9);
+      a.fish(s, 560, 360, 0.9, true);
+      a.envelope(s, 400, 170, 0.9, "#ffd166");
+      a.bubbles(s, [[680, 180, 12], [700, 130, 8]]);
+    }],
     ["Crab brought shells, and Starfish brought light. The seaweed swayed to the left and the right.", (s) => {
       a.sky(s, WATER, "Water");
       a.sand(s, 480);
@@ -329,11 +401,20 @@ const sea: Book = {
       a.balloon(s, 460, 210, "#ffd166");
       a.fish(s, 610, 420, 0.8, true);
     }],
+    ["They hung up streamers of seaweed green, and shells that sparkled with a shimmer and sheen. Starfish shone and fish swam by. “This is the best party!” they all said. “Oh my!”", (s) => {
+      a.sky(s, WATER, "Water");
+      a.sand(s, 520);
+      a.streamer(s, 60, "#52b788");
+      a.streamer(s, 150, "#f72585");
+      a.shells(s, [[150, 575], [650, 575]]);
+      a.starfish(s, 400, 520, 50);
+      a.fish(s, 520, 330, 0.8, true);
+    }],
     ["“Shh! Here comes Olly! Everyone hide!” Behind the big rock they tucked inside. Crab put his claws right over his eyes, all ready to shout the big SURPRISE!", (s) => {
       a.sky(s, WATER, "Water");
       a.sand(s, 500);
       a.octopus(s, 150, 240, 0.55);
-      a.rock(s, 420, 480, 190, 95);
+      a.rock(s, 380, 490, 160, 80);
       a.seaweed(s, 760, 530, 170);
       a.crab(s, 630, 460, 0.8);
     }],
@@ -342,6 +423,14 @@ const sea: Book = {
       a.sand(s, 520);
       a.cake(s, 280, 545);
       a.octopus(s, 610, 320, 0.85);
+    }],
+    ["Olly closed his eyes and made a wish, then blew out the candles with a whoosh and a swish! What did he wish for? Nobody knows. It's a secret wish, and that's how it goes!", (s) => {
+      a.sky(s, WATER, "Water");
+      a.sand(s, 520);
+      a.cake(s, 260, 545);
+      a.octopus(s, 580, 300, 0.85);
+      a.stars(s, [[430, 180, 18], [480, 120, 12], [120, 150, 14]], "Sparkles");
+      a.bubbles(s, [[370, 260, 10], [400, 220, 8]]);
     }],
     ["Olly opened presents, one by one: a sparkly shell and a ball for fun! “Thank you, friends, you're oh so sweet! This party is a special treat!”", (s) => {
       a.sky(s, WATER, "Water");
@@ -379,6 +468,14 @@ const sea: Book = {
       a.fish(s, 170, 190, 0.7);
       a.heart(s, 640, 140, 1.3);
       a.octopus(s, 400, 320, 1);
+    }],
+    ["As the sea grew dark and the moon shone bright, everyone waved and said goodnight. Olly hugged each friend, one by one. “This was the best birthday under the sun!”", (s) => {
+      a.sky(s, "#0077b6", "Night water");
+      a.sand(s, 520);
+      a.moon(s, 660, 110, 50);
+      a.stars(s, [[120, 90, 16], [300, 60, 12], [480, 110, 14]]);
+      a.fish(s, 190, 330, 0.8);
+      a.octopus(s, 500, 340, 0.9);
     }],
   ]),
 };

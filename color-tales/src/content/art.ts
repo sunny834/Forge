@@ -390,3 +390,24 @@ export function musicNote(s: Scene, x: number, y: number, k = 1) {
   s.detail({ kind: "ellipse", cx: x, cy: y, rx: n(11 * k), ry: n(8 * k) }, true);
   s.line(`M ${n(x + 10 * k)} ${y} L ${n(x + 10 * k)} ${n(y - 45 * k)} Q ${n(x + 25 * k)} ${n(y - 35 * k)} ${n(x + 28 * k)} ${n(y - 20 * k)}`);
 }
+
+/** Wavy party streamer hung across the scene. */
+export function streamer(s: Scene, y: number, color = "#52b788") {
+  s.region("Streamer", color, {
+    kind: "path",
+    d: `M 0 ${y} Q 100 ${y + 60} 200 ${y} T 400 ${y} T 600 ${y} T 800 ${y} L 800 ${y + 18} Q 700 ${y + 78} 600 ${y + 18} T 400 ${y + 18} T 200 ${y + 18} T 0 ${y + 18} Z`,
+  });
+}
+
+export function bathtub(s: Scene, cx: number, topY: number, w: number) {
+  const l = cx - w / 2;
+  const r = cx + w / 2;
+  s.region("Tub feet", "#ffd166", {
+    kind: "path",
+    d: `${circlePath(l + 40, topY + 180, 16)} ${circlePath(r - 40, topY + 180, 16)}`,
+  });
+  s.region("Bathtub", "#ffffff", {
+    kind: "path",
+    d: `M ${l - 15} ${topY} L ${r + 15} ${topY} L ${r} ${topY + 40} Q ${r - 10} ${topY + 170} ${cx} ${topY + 170} L ${cx} ${topY + 170} Q ${l + 10} ${topY + 170} ${l} ${topY + 40} Z`,
+  });
+}

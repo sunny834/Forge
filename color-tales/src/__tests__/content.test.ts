@@ -12,8 +12,8 @@ describe("book content", () => {
 
   for (const book of BOOKS) {
     describe(book.title, () => {
-      it("has 12 sequential pages and a valid cover", () => {
-        expect(book.pages).toHaveLength(12);
+      it("has 16 sequential pages and a valid cover", () => {
+        expect(book.pages).toHaveLength(16);
         book.pages.forEach((p, i) => expect(p.index).toBe(i));
         expect(book.pages[book.coverPage]).toBeDefined();
         expect(book.ageMin).toBeLessThanOrEqual(book.ageMax);
